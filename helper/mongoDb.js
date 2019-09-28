@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 module.exports = () => {
-    mongoose.connect(//type the mongodb connection path, {useMongoClient: true});
+    mongoose.connect(/*type the mongodb connection path*/, {useMongoClient: true});
 
     mongoose.connection.on('open', () => {
         console.log('mongo connected');

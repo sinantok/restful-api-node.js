@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 
 const indexRouter = require('./routes/index');
 const bookRouter = require('./routes/book');
+const authorRouter = require('./routes/author');
 
 //db
 const db = require('./helper/mongoDb')(); //() ile dosya icindeki export methodu çalıştırılır
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api/book', bookRouter);
+app.use('/api/author', authorRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

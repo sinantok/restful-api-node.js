@@ -1,5 +1,9 @@
 const express = require('express');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
+//Models
+const UserModel = require('../models/Users');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -28,6 +32,43 @@ router.post('/register', (req, res, next) => {
     });  
   });
 
-})
+});
+
+router.post('/login', (req, res, next) => {
+  const { userName, password } = req.body;
+
+  UserModel.findOne({ userName: userName }, (err, user) => {
+    if(err)
+      throw err;
+    if(user){
+      bcrypt.compare(password, user.password).then((result) => {
+        if(result){
+          const payload = {
+             userName
+          };
+          const token = jwt.sign(payload, req.app.get('api_secret_key'), {
+            expiresIn: 720 //720dklık bir aut suresi veriliyor
+          });
+
+          res.json({
+            status: true,
+            token: token
+          })
+
+        }else{
+          res.json({
+            status: false,
+            message: 'Wrong Password!'
+          });
+        }
+      });
+    }else{
+      res.json({
+        status: false,
+        message: 'User not found!'
+      });
+    }
+  });
+});
 
 module.exports = router;

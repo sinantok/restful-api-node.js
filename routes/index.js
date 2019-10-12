@@ -7,7 +7,7 @@ const UserModel = require('../models/Users');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Book-Api' });
 });
 
 router.post('/register', (req, res, next) => {

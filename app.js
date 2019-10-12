@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const cons = require('consolidate');
 
 const indexRouter = require('./routes/index');
 const bookRouter = require('./routes/book');
@@ -21,8 +22,11 @@ app.set('api_secret_key', config.api_secret_key);
 const verifyToken = require('./middleware/verify-token')
 
 // view engine setup
+app.engine('html', cons.swig)
 app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'html');
 app.set('view engine', 'jade');
+
 
 app.use(logger('dev'));
 

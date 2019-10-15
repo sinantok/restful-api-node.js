@@ -1,3 +1,4 @@
+[![Build status](https://api.travis-ci.org/sinantok/restful-api-node.js.svg)](https://travis-ci.org/sinantok/restful-api-node.js)
 
 # restful-api-node.js (book-api)
 

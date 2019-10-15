@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 //Models
-//const UserModel = require('../models/Users');
+const UserModel = require('../models/Users');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -71,4 +71,4 @@ router.post('/login', (req, res, next) => {
   });
 });
 
-//module.exports = router;
+module.exports = router;
